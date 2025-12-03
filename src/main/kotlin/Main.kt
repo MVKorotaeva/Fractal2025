@@ -34,7 +34,7 @@ fun App(viewModel: MainViewModel= MainViewModel()) {
         }
     }
 }
-
+//gdfgfdgfd
 fun main(): Unit = application {
     Window(
         onCloseRequest = ::exitApplication,
