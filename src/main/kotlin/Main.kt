@@ -1,9 +1,14 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import ru.gr05307.ui.PaintPanel
@@ -12,17 +17,16 @@ import ru.gr05307.viewmodels.MainViewModel
 
 @Composable
 @Preview
-fun App(viewModel: MainViewModel= MainViewModel()) {
+fun App(viewModel: MainViewModel = MainViewModel()) {
     MaterialTheme {
-        Box {
+        Box(Modifier.fillMaxSize()) {
             PaintPanel(
                 Modifier.fillMaxSize(),
-                onImageUpdate = {
-                    viewModel.onImageUpdate(it)
-                }
+                onImageUpdate = { viewModel.onImageUpdate(it) }
             ) {
                 viewModel.paint(it)
             }
+
             SelectionPanel(
                 viewModel.selectionOffset,
                 viewModel.selectionSize,
@@ -31,6 +35,16 @@ fun App(viewModel: MainViewModel= MainViewModel()) {
                 viewModel::onStopSelecting,
                 viewModel::onSelecting,
             )
+
+            Button(
+                onClick = { viewModel.performUndo() },
+                enabled = viewModel.canUndo(),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp)
+            ) {
+                Text("Назад")
+            }
         }
     }
 }
@@ -43,5 +57,3 @@ fun main(): Unit = application {
         App()
     }
 }
-//println(5)
-
