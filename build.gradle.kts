@@ -22,7 +22,7 @@ dependencies {
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
     implementation("androidx.lifecycle:lifecycle-viewmodel-desktop:2.9.4")
-    //implementation("org.jetbrains.compose.ui:ui-graphics")
+    implementation("org.json:json:20240303")
 }
 
 compose.desktop {
@@ -35,4 +35,14 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = "21"
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    targetCompatibility = "21"
+    sourceCompatibility = "21"
 }
