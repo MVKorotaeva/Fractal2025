@@ -14,11 +14,11 @@ import ru.gr05307.painting.FractalPainter
 import ru.gr05307.painting.convertation.Converter
 import ru.gr05307.painting.convertation.Plain
 
-class MainViewModel {
+class MainViewModel{
     var fractalImage: ImageBitmap = ImageBitmap(0, 0)
     var selectionOffset by mutableStateOf(Offset(0f, 0f))
     var selectionSize by mutableStateOf(Size(0f, 0f))
-    private val plain = Plain(-2.0, 1.0, -1.0, 1.0)
+    private val plain = Plain(-2.0,1.0,-1.0,1.0)
     private val fractalPainter = FractalPainter(plain)
     private var mustRepaint by mutableStateOf(true)
 
@@ -46,22 +46,21 @@ class MainViewModel {
     }
 
     fun paint(scope: DrawScope) = runBlocking {
-        updatePlainSize(scope.size.width, scope.size.height)
-
+        plain.width = scope.size.width
+        plain.height = scope.size.height
         if (mustRepaint
             || fractalImage.width != plain.width.toInt()
             || fractalImage.height != plain.height.toInt()
         ) {
-            launch(Dispatchers.Default) {
+            launch (Dispatchers.Default) {
                 fractalPainter.paint(scope)
             }
-        } else {
-            scope.drawImage(fractalImage)
         }
+        else
+            scope.drawImage(fractalImage)
         mustRepaint = false
     }
 
-    /** Обновление ImageBitmap после рисования */
     fun onImageUpdate(image: ImageBitmap) {
         fractalImage = image
     }

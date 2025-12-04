@@ -12,7 +12,7 @@ import ru.gr05307.viewmodels.MainViewModel
 
 @Composable
 @Preview
-fun App(viewModel: MainViewModel= MainViewModel()) {
+fun App(viewModel: MainViewModel = MainViewModel()) {
     MaterialTheme {
         Box {
             PaintPanel(
