@@ -1,6 +1,8 @@
 package ru.gr05307.viewmodels
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.ImageBitmap
@@ -25,13 +27,12 @@ import ru.gr05307.painting.ColorFunction
 import ru.gr05307.painting.*
 import ru.gr05307.rollback.UndoManager
 
-
 class MainViewModel {
     var fractalImage: ImageBitmap = ImageBitmap(0, 0)
     var selectionOffset by mutableStateOf(Offset(0f, 0f))
     var selectionSize by mutableStateOf(Size(0f, 0f))
     private val plain = Plain(-2.0,1.0,-1.0,1.0)
-    //private val fractalPainter = FractalPainter(plain)
+    private val fractalPainter = FractalPainter(plain)
     private var mustRepaint by mutableStateOf(true)
     private val undoManager = UndoManager(maxSize = 100)
 
@@ -63,7 +64,7 @@ class MainViewModel {
         }
     }
 
-    // Рисование фрактала
+    /** Рисование фрактала */
     fun paint(scope: DrawScope) = runBlocking {
         updatePlainSize(scope.size.width, scope.size.height)
 
@@ -80,23 +81,23 @@ class MainViewModel {
         mustRepaint = false
     }
 
-    // Обновление ImageBitmap после рисования
+    /** Обновление ImageBitmap после рисования */
     fun onImageUpdate(image: ImageBitmap) {
         fractalImage = image
     }
 
-    // Начало выделения области
+    /** Начало выделения области */
     fun onStartSelecting(offset: Offset) {
         selectionOffset = offset
         selectionSize = Size(0f, 0f)
     }
 
-    // Обновление выделяемой области
+    /** Обновление выделяемой области */
     fun onSelecting(offset: Offset) {
         selectionSize = Size(selectionSize.width + offset.x, selectionSize.height + offset.y)
     }
 
-    // Завершение выделения и масштабирование
+    /** Завершение выделения и масштабирование */
     fun onStopSelecting() {
         if (selectionSize.width == 0f || selectionSize.height == 0f) return
 
