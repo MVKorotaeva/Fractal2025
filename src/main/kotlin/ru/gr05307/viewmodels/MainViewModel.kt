@@ -21,7 +21,7 @@ import ru.gr05307.painting.FractalPainter
 import ru.gr05307.painting.convertation.Converter
 import ru.gr05307.painting.convertation.Plain
 import ru.gr05307.ExportFractal.FractalExporter
-class MainViewModel{
+
 import ru.gr05307.rollback.UndoManager
 
 class MainViewModel {
