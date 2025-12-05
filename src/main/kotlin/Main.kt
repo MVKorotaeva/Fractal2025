@@ -16,9 +16,6 @@ import ru.gr05307.ui.SelectionPanel
 import ru.gr05307.viewmodels.MainViewModel
 // Добавление от Артёма
 import ru.gr05307.julia.JuliaWindow
-import ru.gr05307.painting.rainbow
-import ru.gr05307.painting.grayscale
-
 
 @Composable
 @Preview
