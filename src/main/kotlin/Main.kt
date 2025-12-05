@@ -27,11 +27,11 @@ fun App(viewModel: MainViewModel = MainViewModel()) {
                 // Вторая поправка: отредактированный код от Артёма
                 onImageUpdate = { image -> viewModel.onImageUpdate(image) },
                 onPaint = { scope -> viewModel.paint(scope) },
-                onClick = {
-                    pos ->
-                    println("CLICK AT $pos")
-                    viewModel.onPointClicked(pos.x, pos.y)
-                }
+//                onClick = {
+//                    pos ->
+//                    println("CLICK AT $pos")
+//                    viewModel.onPointClicked(pos.x, pos.y)
+//                }
             )
             SelectionPanel(
                 viewModel.selectionOffset,
