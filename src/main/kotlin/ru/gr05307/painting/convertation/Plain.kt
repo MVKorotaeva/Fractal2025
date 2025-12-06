@@ -10,4 +10,7 @@ data class Plain(
 ){
     val xDen get() = width / (xMax - xMin)
     val yDen get() = height / (yMax - yMin)
+
+    val aspectRatio: Double
+        get() = if (yMax - yMin != 0.0) (xMax - xMin) / (yMax - yMin) else 1.0
 }
