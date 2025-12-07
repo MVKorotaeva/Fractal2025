@@ -178,7 +178,11 @@ class MainViewModel {
     }
 
     fun saveFractalToJpg(path: String) {
-        val exporter = FractalExporter(plain)
+        val exporter = FractalExporter(
+            plain,
+            currentFractalFunc,
+            currentColorFunc
+        )
         exporter.saveJPG(path)
     }
 
@@ -204,7 +208,8 @@ class MainViewModel {
 
     fun setColorFunction(c: ColorFunction, name: String) {
         currentColorType = name
-        fractalPainter.colorFunc = c
+        // изменил баг из-за которого цвет не менялся
+        currentColorFunc = c
         fractalPainter.colorFunc = c
         mustRepaint = true
     }
