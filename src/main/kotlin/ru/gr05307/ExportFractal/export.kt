@@ -18,7 +18,7 @@ import kotlin.math.sin
 class FractalExporter(
     private val plain: Plain,
     private val fractalFunc: FractalFunction,
-    private val colorFunc: ColorFunction     
+    private val colorFunc: ColorFunction
 ) {
     private val mandelbrot = Mandelbrot(nMax = 200)
 
