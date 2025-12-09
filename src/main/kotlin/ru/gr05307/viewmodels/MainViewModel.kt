@@ -105,6 +105,8 @@ class MainViewModel {
 
     init {
         addCurrentViewAsKeyframe("Initial view")
+        undoManager.save(plain.copy())
+
     }
 
 
