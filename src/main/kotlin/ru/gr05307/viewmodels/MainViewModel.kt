@@ -552,12 +552,16 @@ class MainViewModel {
         fractalPainter.fractalFunc = f
         mustRepaint = true
 
-        MusicForSleep.playFractalTheme(type)
 
-        if (!isMusicPlaying) {
+        if (isMusicPlaying) {
+            MusicForSleep.playFractalTheme(type)
+        } else {
             MusicForSleep.pauseTheme()
         }
     }
+
+
+
 
     fun setColorFunction(c: ColorFunction, name: String) {
         currentColorType = name

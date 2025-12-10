@@ -151,7 +151,7 @@ fun FractalMenu(
                                 .fillMaxWidth()
                                 .padding(end = 16.dp)
                         ) {
-                            PlayerControlButton(viewModel = viewModel)
+                            MusicSwitch(viewModel = viewModel)
                         }
 
                         Divider(color = Color.LightGray)
@@ -281,7 +281,7 @@ fun MenuButton(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth().height(48.dp),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = LightButton, // Светло-серый фон кнопки
+            backgroundColor = LightButton,
             contentColor = Color.Black
         ),
         elevation = ButtonDefaults.elevation(defaultElevation = 0.dp),
@@ -319,7 +319,7 @@ fun TourControlPanel(
         backgroundColor = MaterialTheme.colors.surface.copy(alpha = 0.4f)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            // Заголовок Animation
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
@@ -339,7 +339,7 @@ fun TourControlPanel(
 
             Divider(modifier = Modifier.padding(8.dp))
 
-            // Секция ключевых кадров
+
             Text("Keyframes:", style = MaterialTheme.typography.subtitle1)
             if (viewModel.tourKeyframes.isEmpty()) {
                 Text(
@@ -366,7 +366,7 @@ fun TourControlPanel(
                 }
             }
 
-            // Кнопка добавления ключевого кадра
+
             Button(
                 onClick = { viewModel.addCurrentViewAsKeyframe() },
                 modifier = Modifier.fillMaxWidth(),
@@ -390,7 +390,7 @@ fun TourControlPanel(
 
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 
-            // Управление туром
+
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
@@ -432,29 +432,19 @@ fun TourControlPanel(
 }
 
 @Composable
-fun PlayerControlButton(
-    viewModel: MainViewModel,
-    modifier: Modifier = Modifier
-) {
-    val symbol = if (viewModel.isMusicPlaying) "||" else "▶"
-    val buttonBackgroundColor = Color.LightGray
-    val symbolColor = NeutralDark
-
-    Button(
-        onClick = { viewModel.toggleMusicPlayback() },
-        modifier = modifier.size(40.dp),
-
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = buttonBackgroundColor,
-            contentColor = symbolColor
-        ),
-        elevation = ButtonDefaults.elevation(defaultElevation = 4.dp),
-        contentPadding = PaddingValues(0.dp)
+fun MusicSwitch(viewModel: MainViewModel) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = symbol,
-            color = symbolColor,
-            style = MaterialTheme.typography.h6
+        Switch(
+            checked = viewModel.isMusicPlaying,
+            onCheckedChange = { value ->
+                viewModel.toggleMusicPlayback()
+            }
         )
+        Spacer(Modifier.width(8.dp))
+        Text("Воспроизведение музыки", style = MaterialTheme.typography.body2)
     }
 }
+
