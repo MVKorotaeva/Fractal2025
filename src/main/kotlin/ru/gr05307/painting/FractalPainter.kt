@@ -25,6 +25,7 @@ class FractalPainter(
         val h = plain.height.toInt()
 
         val nMax = calculateIterations(plain)
+        println(nMax)
 
         // 4 bytes per pixel (RGBA)
         val pixels = ByteArray(w * h * 4)
