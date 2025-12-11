@@ -43,6 +43,8 @@ import java.util.concurrent.Executors
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.cancelAndJoin
 import ru.gr05307.audio.MusicForSleep
+
+
 class MainViewModel {
     var showJulia by mutableStateOf(true)
     fun setJuliaEnabled(value: Boolean) {
@@ -557,9 +559,7 @@ class MainViewModel {
     }
 
 
-
-
-    // --- методы переключения функций и цвета ---
+    //  методы переключения функций и цвета
     fun setFractalFunction(f: FractalFunction, type: String) {
         currentFractalFunc = f
         currentFractalType = type
@@ -615,7 +615,6 @@ class MainViewModel {
             isMusicPlaying = true
         }
     }
-
 
 }
 
